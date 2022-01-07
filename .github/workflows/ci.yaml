@@ -9,7 +9,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-
 jobs:
 
   tests:
@@ -60,13 +59,6 @@ jobs:
         uses: DeLaGuardo/setup-clojure@master
         with:
           tools-deps: 1.10.3.1053
-
-      - name: Cache Maven packages
-        uses: actions/cache@v2.1.7
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/deps.edn') }}
-          restore-keys: ${{ runner.os }}-m2
 
       - name: Execute lint checks
         run: |
