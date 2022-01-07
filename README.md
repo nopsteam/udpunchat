@@ -32,6 +32,13 @@ clj -X:run-client :client-id 1 :server-port 7070 :server-ip \"127.0.0.1\"
 clj -X:run-client :client-id 2 :server-port 7070 :server-ip \"127.0.0.1\"
 ```
 
+### Lint & format
+```bash
+clj -M:clojure-lsp format
+clj -M:clojure-lsp clean-ns
+clj -M:clojure-lsp diagnostics
+```
+
 ### Build
 Run the project's tests (they'll fail until you edit them):
 
