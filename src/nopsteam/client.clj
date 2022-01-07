@@ -1,7 +1,7 @@
 (ns nopsteam.client
-  (:require [nopsteam.messaging :as m]
-            [byte-streams :as bs]
-            [clojure.string :as str])
+  (:require [byte-streams :as bs]
+            [clojure.string :as str]
+            [nopsteam.messaging :as m])
   (:import [java.net InetAddress DatagramSocket]))
 
 (defn loop-send

@@ -1,6 +1,6 @@
 (ns nopsteam.udpunchat
-  (:require [nopsteam.server :as server]
-            [nopsteam.client :as client])
+  (:require [nopsteam.client :as client]
+            [nopsteam.server :as server])
   (:gen-class))
 
 (defn server-loop [args] (server/listen args))

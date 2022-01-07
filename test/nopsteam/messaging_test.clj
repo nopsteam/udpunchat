@@ -1,8 +1,7 @@
 (ns nopsteam.messaging-test
-  (:require [clojure.test :refer [deftest testing is]]
-            [clojure.string :as str]
-            [nopsteam.messaging :as m]
-            [byte-streams :as bs])
+  (:require [byte-streams :as bs]
+            [clojure.test :refer [deftest is testing]]
+            [nopsteam.messaging :as m])
   (:import [java.net InetSocketAddress]))
 
 (deftest messaging
@@ -72,6 +71,3 @@
           (testing "with the specified length"
             (is (count message)
                 (count (.getData packet)))))))))
-
-
-
