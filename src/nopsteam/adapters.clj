@@ -1,4 +1,5 @@
-(ns nopsteam.adapters)
+(ns nopsteam.adapters
+  (:require [nopsteam.schemas :as s]))
 
 (defn request->client-info
   [request]
@@ -12,3 +13,11 @@
 (defn client-info->str
   [{:keys [host-address port]}]
   (str host-address "-" port "-"))
+
+(defn ->server-request-message 
+  {:malli/schema [:=> [:cat :keyword :keyword] 
+                  s/message]}
+  [sender-id receiver-id]
+  {:type :server-request
+   :sender {:id sender-id}
+   :receiver {:id receiver-id}})

@@ -15,21 +15,21 @@ clj -X:run-server
 
 ### Clients
 ```bash
-clj -X:run-client :client-id 1
+clj -X:run-client :sender-id :delboni :receiver-id :bertin
 # AND
-clj -X:run-client :client-id 2
+clj -X:run-client :sender-id :bertin :receiver-id :delboni
 
 # OR
 
-clj -X:run-client :client-id 1 :server-port 7070
+clj -X:run-client :sender-id :delboni :receiver-id :bertin :server-port 7070
 # AND
-clj -X:run-client :client-id 2 :server-port 7070
+clj -X:run-client :sender-id :bertin :receiver-id :delboni :server-port 7070
 
 # OR
 
-clj -X:run-client :client-id 1 :server-port 7070 :server-ip \"127.0.0.1\"
+clj -X:run-client :sender-id :delboni :receiver-id :bertin :server-port 7070 :server-ip \"127.0.0.1\"
 # AND
-clj -X:run-client :client-id 2 :server-port 7070 :server-ip \"127.0.0.1\"
+clj -X:run-client :sender-id :bertin :receiver-id :delboni :server-port 7070 :server-ip \"127.0.0.1\"
 ```
 
 ### Lint & format

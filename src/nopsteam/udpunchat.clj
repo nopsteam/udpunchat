@@ -6,8 +6,8 @@
 (defn server-loop [args] (server/listen args))
 
 (defn client-connect
-  [{:keys [server-port server-ip client-id]}]
-  (client/connect server-port server-ip client-id))
+  [{:keys [server-port server-ip sender-id receiver-id]}]
+  (client/connect server-port server-ip sender-id receiver-id))
 
 (defn -main
   "Main server"

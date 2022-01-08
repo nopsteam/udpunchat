@@ -2,7 +2,8 @@
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}
         org.clj-commons/byte-streams {:mvn/version "0.2.10"}
         com.fzakaria/slf4j-timbre {:mvn/version "0.3.21"}
-        com.taoensso/timbre {:mvn/version "5.1.2"}}
+        com.taoensso/timbre {:mvn/version "5.1.2"}
+        metosin/malli {:mvn/version "0.7.5"}}
  :aliases
  {:run-server {:ns-default nopsteam.udpunchat
                :exec-fn server-loop
@@ -10,8 +11,8 @@
   :run-client {:ns-default nopsteam.udpunchat
                :exec-fn client-connect
                :exec-args {:server-port 7070
-                           :server-ip "127.0.0.1"
-                           :client-id 1}}
+                           :server-ip "127.0.0.1"}}
+  :dev {:extra-paths ["test" "dev"]}
   :clojure-lsp {:replace-deps {com.github.clojure-lsp/clojure-lsp
                                {:mvn/version "2022.01.03-19.46.10"}}
                 :main-opts ["-m" "clojure-lsp.main"]}
