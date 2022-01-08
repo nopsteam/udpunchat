@@ -14,8 +14,8 @@
   [{:keys [host-address port]}]
   (str host-address "-" port "-"))
 
-(defn ->server-request-message 
-  {:malli/schema [:=> [:cat :keyword :keyword] 
+(defn ->server-request-message
+  {:malli/schema [:=> [:cat :keyword :keyword]
                   s/message]}
   [sender-id receiver-id]
   {:type :server-request
