@@ -10,8 +10,12 @@
 (def udp-port 7070)
 
 (defn connect-peers [udp-server client-1 client-2]
-  (.send udp-server (m/new-packet (a/client-info->str client-2) (:socket client-1)))
-  (.send udp-server (m/new-packet (a/client-info->str client-1) (:socket client-2))))
+  (.send udp-server
+         (m/new-packet (str (a/->server-response-message client-1 client-2))
+                       (:socket client-1)))
+  (.send udp-server
+         (m/new-packet (str (a/->server-response-message client-2 client-1))
+                       (:socket client-2))))
 
 (defn listen
   [_]
@@ -25,6 +29,5 @@
 
         (when-let [receiver-request (l/get-peer-receiver sender-request @active-peer-requests)]
           (connect-peers udp-server sender-request receiver-request)
-          (swap! active-peer-requests #(l/remove-peer-requests % sender-request receiver-request))
-          (prn "->" @active-peer-requests)))
+          (swap! active-peer-requests #(l/remove-peer-requests % sender-request receiver-request))))
       (recur))))

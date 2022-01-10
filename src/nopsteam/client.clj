@@ -1,6 +1,6 @@
 (ns nopsteam.client
   (:require [byte-streams :as bs]
-            [clojure.string :as str]
+            [clojure.edn :as edn]
             [nopsteam.adapters :as a]
             [nopsteam.messaging :as m])
   (:import [java.net InetAddress DatagramSocket]))
@@ -32,15 +32,15 @@
         received-packet (m/empty-message 1024)
         _receive (.receive client-socket received-packet)
 
-        [str-ip str-port] (str/split (bs/to-string (.getData received-packet)) #"-")
-        ip (InetAddress/getByName str-ip)
-        port (Long/parseLong  str-port)
+        {:keys [receiver]} (edn/read-string (bs/to-string (.getData received-packet)))
+        ip (InetAddress/getByName (-> receiver :address :ip))
+        port (-> receiver :address :port)
 
         local-port (.getLocalPort client-socket)
         _close-socket (.close client-socket)
         client-socket-hole (DatagramSocket. local-port)]
 
-    (println "IP:" ip "PORT:" port)
+    (println "receiver:" ip port)
 
     (.send client-socket-hole (m/new-packet (str "Client Connected: " sender-id) ip port))
 

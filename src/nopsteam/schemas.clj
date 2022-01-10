@@ -2,7 +2,7 @@
 
 (def net-address
   [:map
-   [:ip :string]
+   [:ip :strng]
    [:port :int]])
 
 (def peer
@@ -14,6 +14,7 @@
   [:map
    [:type [:enum
            :server-request
+           :server-response
            :client-handshake
            :message
            :message-relayed
