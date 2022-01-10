@@ -1,19 +1,29 @@
 (ns nopsteam.adapters
-  (:require [nopsteam.schemas :as s]))
+  (:require [byte-streams :as bs]
+            [clojure.edn :as edn]
+            [nopsteam.schemas :as s]))
 
-(defn request->client-info
+;TODO unit tests
+(defn ->peer-request
+  {:malli/schema [:=> [:cat :any]
+                  s/peer-request]}
   [request]
-  (let [host-address (-> request .getAddress .getHostAddress)
+  (let [request-message (edn/read-string (bs/to-string (.getData request)))
+        host-address (-> request .getAddress .getHostAddress)
         port (.getPort request)]
-    {:id (str host-address ":" port)
+    {:id (str (-> request-message :sender :id)
+              (-> request-message :receiver :id))
      :socket (.getSocketAddress request)
      :host-address host-address
-     :port port}))
+     :port port
+     :request request-message}))
 
+;TODO refact to use schema mesasge, add schema & unit test
 (defn client-info->str
   [{:keys [host-address port]}]
   (str host-address "-" port "-"))
 
+;TODO unit tests
 (defn ->server-request-message
   {:malli/schema [:=> [:cat :keyword :keyword]
                   s/message]}

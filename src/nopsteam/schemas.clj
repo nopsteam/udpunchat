@@ -22,3 +22,11 @@
    [:sender peer]
    [:receiver peer]
    [:payload {:optional true} :string]])
+
+(def peer-request
+  [:map
+   [:id :string]
+   [:socket :any]
+   [:host-address :string]
+   [:port :int]
+   [:request message]])
