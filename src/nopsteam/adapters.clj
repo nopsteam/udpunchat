@@ -17,7 +17,7 @@
      :port port
      :request request-message}))
 
-;TODO use schema mesasge, add schema & unit test
+;TODO unit test
 (defn ->server-response-message
   {:malli/schema [:=> [:cat s/peer-request s/peer-request] s/message]}
   [sender receiver]

@@ -2,7 +2,7 @@
 
 (def net-address
   [:map
-   [:ip :strng]
+   [:ip :string]
    [:port :int]])
 
 (def peer
