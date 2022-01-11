@@ -2,7 +2,7 @@
   (:require [malli.instrument :as mi]))
 
 (defn with-malli-intrumentation
-  "Wraps f ensuring there is an embedded Kafka before running it"
+  "Wraps f ensuring there has malli collect and instrument started before running it"
   [f]
   (mi/collect!)
   (mi/instrument!)
