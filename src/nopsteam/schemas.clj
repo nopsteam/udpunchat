@@ -42,7 +42,7 @@
 
 (def JavaInetAddress
   (m/-simple-schema
-   {:type :socket-address
+   {:type :inet-address
     :pred (fn [socket-address] (instance? java.net.InetAddress socket-address))
     :type-properties {:error/message "should be an instance of java.net.InetAddress"
                       :gen/gen (gen/return (java.net.InetAddress/getByName "0.0.0.0"))}}))
@@ -57,7 +57,7 @@
 (def peer-request
   [:map
    [:id :string]
-   [:socket JavaSocketAddress]
+   [:socket-address JavaSocketAddress]
    [:host-address :string]
    [:port :int]
    [:request message]])
