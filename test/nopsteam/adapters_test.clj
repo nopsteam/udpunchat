@@ -1,6 +1,6 @@
 (ns nopsteam.adapters-test
   (:require [byte-streams :as bs]
-            [clojure.test :refer [use-fixtures]]
+            [clojure.test :refer [use-fixtures is]]
             [clojure.test.check.clojure-test :refer [defspec]]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
@@ -22,4 +22,16 @@
                                            (count byte-message)
                                            (.getLocalSocketAddress (DatagramSocket.)))))
                                   (mg/generator s/message))]
-    (m/validate s/peer-request (a/->peer-request packet))))
+    (is (nil? (m/explain s/peer-request (a/->peer-request packet))))))
+
+(defspec ->server-response-message-generator
+  100
+  (prop/for-all [sender-peer-request (mg/generator s/peer-request)
+                 receiver-peer-request (mg/generator s/peer-request)]
+    (is (nil? (m/explain s/message (a/->server-response-message sender-peer-request receiver-peer-request))))))
+
+(defspec ->server-request-message-generator
+  100
+  (prop/for-all [sender-id (mg/generator :keyword)
+                 receiver-id (mg/generator :keyword)]
+    (is (nil? (m/explain s/message (a/->server-request-message sender-id receiver-id))))))

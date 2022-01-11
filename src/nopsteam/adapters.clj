@@ -16,7 +16,6 @@
      :port port
      :request request-message}))
 
-;TODO unit test
 (defn ->server-response-message
   {:malli/schema [:=> [:cat s/peer-request s/peer-request] s/message]}
   [sender receiver]
@@ -28,7 +27,6 @@
               :address {:ip (:host-address receiver)
                         :port (:port receiver)}}})
 
-;TODO unit tests
 (defn ->server-request-message
   {:malli/schema [:=> [:cat :keyword :keyword] s/message]}
   [sender-id receiver-id]
