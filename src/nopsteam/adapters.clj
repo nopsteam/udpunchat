@@ -4,7 +4,7 @@
             [nopsteam.schemas :as s]))
 
 (defn ->peer-request
-  {:malli/schema [:=> [:cat :any] s/peer-request]}
+  {:malli/schema [:=> [:cat s/JavaDatagramPacket] s/peer-request]}
   [request]
   (let [request-message (edn/read-string (bs/to-string (.getData request)))
         host-address (-> request .getAddress .getHostAddress)

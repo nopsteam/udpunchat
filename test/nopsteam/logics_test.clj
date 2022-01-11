@@ -1,9 +1,12 @@
 (ns nopsteam.logics-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [clojure.test :refer [deftest is testing use-fixtures]]
             [malli.generator :as mg]
             [nopsteam.logics :as l]
-            [nopsteam.schemas :as s])
+            [nopsteam.schemas :as s]
+            [nopsteam.utils :as u])
   (:import [java.net DatagramSocket]))
+
+(use-fixtures :once u/with-malli-intrumentation)
 
 (def sender-request-1
   {:id ":bertin:delboni"

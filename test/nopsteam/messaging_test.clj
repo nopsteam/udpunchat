@@ -1,8 +1,11 @@
 (ns nopsteam.messaging-test
   (:require [byte-streams :as bs]
-            [clojure.test :refer [deftest is testing]]
-            [nopsteam.messaging :as m])
+            [clojure.test :refer [deftest is testing use-fixtures]]
+            [nopsteam.messaging :as m]
+            [nopsteam.utils :as u])
   (:import [java.net InetSocketAddress]))
+
+(use-fixtures :once u/with-malli-intrumentation)
 
 (deftest messaging
   (testing "creation of a packet with an empty message"
