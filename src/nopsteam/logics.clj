@@ -8,12 +8,12 @@
   (not (some #(= (:id %) (:id sender-request)) requests)))
 
 ;(request-not-exists?
- ;{:id ":bertin:delboni" :socket nil :host-address "127.0.0.1" :port 12345
+ ;{:id ":bertin:delboni" :socket (java.net.DatagramSocket.) :host-address "127.0.0.1" :port 12345
   ;:request {:type :server-request
             ;:receiver {:id :bertin}
             ;:sender {:id :delboni}}}
- ;[{:id ":bertin:delboni", :socket nil, :host-address "127.0.0.1", :port 39097, :request {:type :server-request, :sender {:id :bertin}, :receiver {:id :delboni}}}
-  ;{:id ":delboni:bertin", :socket nil, :host-address "127.0.0.1", :port 48998, :request {:type :server-request, :sender {:id :delboni}, :receiver {:id :bertin}}}])
+ ;[{:id ":bertin:delboni", :socket (java.net.DatagramSocket.), :host-address "127.0.0.1", :port 39097, :request {:type :server-request, :sender {:id :bertin}, :receiver {:id :delboni}}}
+  ;{:id ":delboni:bertin", :socket (java.net.DatagramSocket.), :host-address "127.0.0.1", :port 48998, :request {:type :server-request, :sender {:id :delboni}, :receiver {:id :bertin}}}])
 
 ;TODO unit test
 (defn get-peer-receiver
@@ -27,12 +27,12 @@
          first)))
 
 ;(get-peer-receiver
- ;{:id ":bertin:delboni" :socket nil :host-address "127.0.0.1" :port 12345
+ ;{:id ":bertin:delboni" :socket (java.net.DatagramSocket.) :host-address "127.0.0.1" :port 12345
   ;:request {:type :server-request
             ;:receiver {:id :bertin}
             ;:sender {:id :delboni}}}
- ;[{:id ":bertin:delboni", :socket nil, :host-address "127.0.0.1", :port 39097, :request {:type :server-request, :sender {:id :bertin}, :receiver {:id :delboni}}}
-  ;{:id ":delboni:bertin", :socket nil, :host-address "127.0.0.1", :port 48998, :request {:type :server-request, :sender {:id :delboni}, :receiver {:id :bertin}}}])
+ ;[{:id ":bertin:delboni", :socket (java.net.DatagramSocket.), :host-address "127.0.0.1", :port 39097, :request {:type :server-request, :sender {:id :bertin}, :receiver {:id :delboni}}}
+  ;{:id ":delboni:bertin", :socket (java.net.DatagramSocket.), :host-address "127.0.0.1", :port 48998, :request {:type :server-request, :sender {:id :delboni}, :receiver {:id :bertin}}}])
 
 ;TODO unit test
 (defn remove-peer-requests
@@ -42,15 +42,15 @@
                (= (:id %) (:id sender-request))) requests))
 
 ;(remove-peer-requests
- ;[{:id ":delboni:bertin", :socket nil, :host-address "127.0.0.1", :port 35587,
+ ;[{:id ":delboni:bertin", :socket (java.net.DatagramSocket.), :host-address "127.0.0.1", :port 35587,
    ;:request {:type :server-request, :sender {:id :delboni}, :receiver {:id :bertin}}}
-  ;{:id ":bertin:delboni", :socket nil, :host-address "127.0.0.1", :port 50515,
+  ;{:id ":bertin:delboni", :socket (java.net.DatagramSocket.), :host-address "127.0.0.1", :port 50515,
    ;:request {:type :server-request, :sender {:id :bertin}, :receiver {:id :delboni}}}]
- ;{:id ":bertin:delboni" :socket nil :host-address "127.0.0.1" :port 12345
+ ;{:id ":bertin:delboni" :socket (java.net.DatagramSocket.) :host-address "127.0.0.1" :port 12345
   ;:request {:type :server-request
             ;:receiver {:id :bertin}
             ;:sender {:id :delboni}}}
- ;{:id ":delboni:bertin" :socket nil :host-address "127.0.0.1" :port 54321
+ ;{:id ":delboni:bertin" :socket (java.net.DatagramSocket.) :host-address "127.0.0.1" :port 54321
   ;:request {:type :server-request
             ;:receiver {:id :delboni}
             ;:sender {:id :bertin}}})

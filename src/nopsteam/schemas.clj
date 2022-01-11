@@ -1,4 +1,5 @@
-(ns nopsteam.schemas)
+(ns nopsteam.schemas
+  (:require [malli.core :as m]))
 
 (def net-address
   [:map
@@ -24,10 +25,16 @@
    [:receiver peer]
    [:payload {:optional true} :string]])
 
+(def Socket
+  (m/-simple-schema
+   {:type :socket
+    :pred (fn [socket] (instance? java.net.DatagramSocket socket))
+    :type-properties {:error/message "should be an instance of java.net.DatagramSocket"}}))
+
 (def peer-request
   [:map
    [:id :string]
-   [:socket :any]
+   [:socket Socket]
    [:host-address :string]
    [:port :int]
    [:request message]])
