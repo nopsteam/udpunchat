@@ -1,5 +1,6 @@
 (ns nopsteam.schemas
-  (:require [malli.core :as m]))
+  (:require [clojure.test.check.generators :as gen]
+            [malli.core :as m]))
 
 (def net-address
   [:map
@@ -25,16 +26,25 @@
    [:receiver peer]
    [:payload {:optional true} :string]])
 
-(def Socket
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(def JavaDatagramSocket
   (m/-simple-schema
-   {:type :socket
+   {:type :datagram-socket
     :pred (fn [socket] (instance? java.net.DatagramSocket socket))
-    :type-properties {:error/message "should be an instance of java.net.DatagramSocket"}}))
+    :type-properties {:error/message "should be an instance of java.net.DatagramSocket"
+                      :gen/gen (gen/return (java.net.DatagramSocket.))}}))
+
+(def JavaSocketAddress
+  (m/-simple-schema
+   {:type :socket-address
+    :pred (fn [socket-address] (instance? java.net.SocketAddress socket-address))
+    :type-properties {:error/message "should be an instance of java.net.SocketAddress"
+                      :gen/gen (gen/return (.getLocalSocketAddress (java.net.DatagramSocket.)))}}))
 
 (def peer-request
   [:map
    [:id :string]
-   [:socket Socket]
+   [:socket JavaSocketAddress]
    [:host-address :string]
    [:port :int]
    [:request message]])

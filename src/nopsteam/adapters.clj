@@ -3,7 +3,6 @@
             [clojure.edn :as edn]
             [nopsteam.schemas :as s]))
 
-;TODO unit tests
 (defn ->peer-request
   {:malli/schema [:=> [:cat :any] s/peer-request]}
   [request]
