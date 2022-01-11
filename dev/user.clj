@@ -1,6 +1,7 @@
 (ns user
   (:require [malli.dev :as dev]
-            [malli.dev.pretty :as pretty]))
+            [malli.dev.pretty :as pretty]
+            [nopsteam.udpunchat]))
 
 (defn start
   []
