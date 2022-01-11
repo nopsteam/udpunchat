@@ -44,7 +44,7 @@
 (def peer-request
   [:map
    [:id :string]
-   [:socket JavaSocketAddress]
+   [:socket-address JavaSocketAddress]
    [:host-address :string]
    [:port :int]
    [:request message]])

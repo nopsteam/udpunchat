@@ -2,6 +2,7 @@
   (:require [nopsteam.adapters :as a]
             [nopsteam.logics :as l]
             [nopsteam.messaging :as m]
+            [nopsteam.schemas :as s]
             [taoensso.timbre :as t])
   (:import [java.net DatagramSocket]))
 
@@ -9,13 +10,15 @@
 
 (def udp-port 7070)
 
-(defn connect-peers [udp-server client-1 client-2]
+(defn connect-peers
+  {:malli/schema [:=> [:cat s/peer-request s/peer-request] :nil]}
+  [udp-server client-1 client-2]
   (.send udp-server
          (m/new-packet (str (a/->server-response-message client-1 client-2))
-                       (:socket client-1)))
+                       (:socket-address client-1)))
   (.send udp-server
          (m/new-packet (str (a/->server-response-message client-2 client-1))
-                       (:socket client-2))))
+                       (:socket-address client-2))))
 
 (defn listen
   [_]

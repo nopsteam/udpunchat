@@ -11,7 +11,7 @@
         port (.getPort request)]
     {:id (str (-> request-message :sender :id)
               (-> request-message :receiver :id))
-     :socket (.getSocketAddress request)
+     :socket-address (.getSocketAddress request)
      :host-address host-address
      :port port
      :request request-message}))

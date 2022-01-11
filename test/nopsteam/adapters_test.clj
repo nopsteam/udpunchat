@@ -1,6 +1,6 @@
 (ns nopsteam.adapters-test
   (:require [byte-streams :as bs]
-            [clojure.test :refer [use-fixtures is]]
+            [clojure.test :refer [is use-fixtures]]
             [clojure.test.check.clojure-test :refer [defspec]]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
